@@ -71,6 +71,36 @@ export default function App() {
             Fast Delivery
           </label>
         </fieldset>
+        <fieldset>
+          <legend>Price Range</legend>
+          <input
+            type="range"
+            min={0}
+            max={1000}
+            step={100}
+            list="tickmarks"
+            value={state.minPrice}
+            onChange={(e) =>
+              dispatch({
+                type: "MIN_PRICE",
+                payload: e.target.value
+              })
+            }
+          />
+          <datalist id="tickmarks">
+            <option value="0" label="0"></option>
+            <option value="100"></option>
+            <option value="200"></option>
+            <option value="300"></option>
+            <option value="400"></option>
+            <option value="500" label="500"></option>
+            <option value="600"></option>
+            <option value="700"></option>
+            <option value="800"></option>
+            <option value="900"></option>
+            <option value="1000" label="1000"></option>
+          </datalist>
+        </fieldset>
         <div style={{ padding: "1rem 0" }}>
           <button onClick={() => dispatch({ type: "RESET" })}>
             reset all filters

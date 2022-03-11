@@ -23,6 +23,9 @@ const showFastDeliveryProducts = (state, products) =>
     ? products.filter((product) => product.fastDelivery === true)
     : products;
 
+const productsWithMinPrice = (state, products) =>
+  products.filter((product) => product.price >= state.minPrice);
+
 const compose = (state, ...acc) => (initialData) =>
   acc.reduce((acc, curFn) => curFn(state, acc), initialData);
 
@@ -30,5 +33,6 @@ export {
   sortProducts,
   compose,
   hideOutOfStockProducts,
+  productsWithMinPrice,
   showFastDeliveryProducts
 };
