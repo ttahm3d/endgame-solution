@@ -1,12 +1,48 @@
 import React from "react";
-import { useProducts } from "./Context/ProductsContext";
+import { useProducts } from "./ProductContext/Context";
 import "./styles.css";
 
 export default function App() {
-  const { products } = useProducts();
-
+  const { products, state, dispatch } = useProducts();
   return (
     <>
+      <div>
+        <fieldset>
+          <legend>Sort By</legend>
+          <label htmlFor="sort-low-to-high">
+            <input
+              type="radio"
+              id="sort-low-to-high"
+              name="sortBy"
+              value="low-to-high"
+              checked={state.sortBy === "low-to-high"}
+              onChange={(e) => {
+                dispatch({
+                  type: "SORT_BY",
+                  payload: e.target.value
+                });
+              }}
+            />
+            Low to high
+          </label>
+          <label htmlFor="sort-hight-to-low">
+            <input
+              type="radio"
+              id="sort-hight-to-low"
+              name="sortBy"
+              value="high-to-low"
+              checked={state.sortBy === "high-to-low"}
+              onChange={(e) => {
+                dispatch({
+                  type: "SORT_BY",
+                  payload: e.target.value
+                });
+              }}
+            />
+            High to low
+          </label>
+        </fieldset>
+      </div>
       <div className="App" style={{ display: "flex", flexWrap: "wrap" }}>
         {products.map(
           ({

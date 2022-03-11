@@ -2,7 +2,7 @@ import React, { StrictMode } from "react";
 import ReactDOM from "react-dom";
 
 import App from "./App";
-import { ProductsProvider } from "./Context/ProductsContext";
+import { ProductsProvider } from "./ProductContext/Context";
 
 const rootElement = document.getElementById("root");
 ReactDOM.render(
