@@ -13,7 +13,22 @@ const sortProducts = (state, products) => {
   }
 };
 
+const hideOutOfStockProducts = (state, products) =>
+  state.showOnlyInStock
+    ? products.filter((product) => product.inStock === true)
+    : products;
+
+const showFastDeliveryProducts = (state, products) =>
+  state.showOnlyFastDelivery
+    ? products.filter((product) => product.fastDelivery === true)
+    : products;
+
 const compose = (state, ...acc) => (initialData) =>
   acc.reduce((acc, curFn) => curFn(state, acc), initialData);
 
-export { sortProducts, compose };
+export {
+  sortProducts,
+  compose,
+  hideOutOfStockProducts,
+  showFastDeliveryProducts
+};

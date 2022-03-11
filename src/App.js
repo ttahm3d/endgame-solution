@@ -4,9 +4,10 @@ import "./styles.css";
 
 export default function App() {
   const { products, state, dispatch } = useProducts();
+  console.log(state);
   return (
     <>
-      <div>
+      <div style={{ padding: "2rem 0.5rem" }}>
         <fieldset>
           <legend>Sort By</legend>
           <label htmlFor="sort-low-to-high">
@@ -42,6 +43,39 @@ export default function App() {
             High to low
           </label>
         </fieldset>
+        <fieldset>
+          <legend>Stock</legend>
+          <label htmlFor="include-out-of-stock">
+            <input
+              type="checkbox"
+              id="include-out-of-stock"
+              checked={state.showOnlyInStock ? true : false}
+              onChange={(e) =>
+                dispatch({ type: "OUT_OF_STOCK", payload: e.target.checked })
+              }
+            />
+            Hide out of stock items
+          </label>
+        </fieldset>
+        <fieldset>
+          <legend>Fast Delivery</legend>
+          <label htmlFor="only-fast-delivery">
+            <input
+              type="checkbox"
+              id="only-fast-delivery"
+              checked={state.showOnlyFastDelivery ? true : false}
+              onChange={(e) =>
+                dispatch({ type: "FAST_DELIVERY", payload: e.target.checked })
+              }
+            />
+            Fast Delivery
+          </label>
+        </fieldset>
+        <div style={{ padding: "1rem 0" }}>
+          <button onClick={() => dispatch({ type: "RESET" })}>
+            reset all filters
+          </button>
+        </div>
       </div>
       <div className="App" style={{ display: "flex", flexWrap: "wrap" }}>
         {products.map(

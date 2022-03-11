@@ -2,16 +2,30 @@ import { createContext, useContext, useReducer } from "react";
 
 import { productsData } from "./Data";
 import { productsReducer } from "./Reducer";
-import { sortProducts, compose } from "./Utils";
+import {
+  sortProducts,
+  hideOutOfStockProducts,
+  showFastDeliveryProducts,
+  compose
+} from "./Utils";
 
 const ProductsContext = createContext();
 
-const ProductsProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(productsReducer, {
-    sortBy: ""
-  });
+const initialState = {
+  sortBy: "",
+  showOnlyInStock: false,
+  showOnlyFastDelivery: false
+};
 
-  const filteredProducts = compose(state, sortProducts)(productsData);
+const ProductsProvider = ({ children }) => {
+  const [state, dispatch] = useReducer(productsReducer, initialState);
+
+  const filteredProducts = compose(
+    state,
+    sortProducts,
+    showFastDeliveryProducts,
+    hideOutOfStockProducts
+  )(productsData);
 
   return (
     <ProductsContext.Provider
