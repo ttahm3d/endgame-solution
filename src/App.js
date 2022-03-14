@@ -6,7 +6,7 @@ export default function App() {
   const { products, state, dispatch } = useProducts();
   console.log(state);
   return (
-    <>
+    <div style={{ width: "90vw", maxWidth: "1024px", marginInline: "auto" }}>
       <div style={{ padding: "2rem 0.5rem" }}>
         <fieldset>
           <legend>Sort By</legend>
@@ -149,6 +149,6 @@ export default function App() {
           )
         )}
       </div>
-    </>
+    </div>
   );
 }
