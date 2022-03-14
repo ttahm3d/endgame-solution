@@ -107,7 +107,13 @@ export default function App() {
           </button>
         </div>
       </div>
-      <div className="App" style={{ display: "flex", flexWrap: "wrap" }}>
+      <div
+        className="App"
+        style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(auto-fill, minmax(13rem, 1fr))"
+        }}
+      >
         {products.map(
           ({
             id,
@@ -125,7 +131,6 @@ export default function App() {
                 border: "1px solid #4B5563",
                 borderRadius: "0 0 0.5rem 0.5rem",
                 margin: "1rem",
-                maxWidth: "40%",
                 padding: "0 0 1rem"
               }}
             >
